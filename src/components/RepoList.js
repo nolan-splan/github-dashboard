@@ -1,28 +1,24 @@
-import { Box, List, ListItemText } from '@material-ui/core'
-import { ListItemButton } from '@mui/material'
+import { List, ListItemText } from '@material-ui/core'
+import { ListItemButton, Paper } from '@mui/material'
 import React from 'react'
 
 export default function RepoList(props) {
-  const { repos } = props
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
-
-  const handleListItemClicked = (event, index) => {
-    setSelectedIndex(index)
-  }
+  const { repos, onRepoClicked, selectedRepo } = props
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
-      <List component="nav" aria-label="main repo list">
+    <List component="nav" aria-label="main repo list">
+
+      <Paper style={{ backgroundColor: '#424242', color: '#fff', marginLeft: '1rem', marginTop: '1rem' }}>
         { repos.length > 0 && repos.map(repo => (
           <ListItemButton
-            selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClicked(event, 0)}
+            selected={selectedRepo === repo.name}
+            onClick={(event) => onRepoClicked(event, repo.name)}
             key={repo.id}
           >
             <ListItemText primary={repo.name} />
           </ListItemButton>
         ))}
-      </List>
-    </Box>
+      </Paper>
+    </List>
   )
 }

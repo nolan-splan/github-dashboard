@@ -17,11 +17,11 @@ export async function fetchCurrentUser(callback) {
 }
 
 export async function fetchPullsForRepo(repo, callback) {
-  const { data } = await octokit.rest.pulls.list({
-    owner: 'ccisystems',
-    repo,
-    state: 'open'
-  })
+  // const { data } = await octokit.rest.pulls.list({
+  //   owner: 'ccisystems',
+  //   repo,
+  // })
+  const { data } = await octokit.request(`/repos/ccisystems/${repo}/pulls`)
   console.log(data)
   callback(data)
 }

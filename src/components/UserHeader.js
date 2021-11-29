@@ -1,24 +1,24 @@
 import React from 'react'
-import { Avatar, Typography, Grid } from '@material-ui/core'
+import { Avatar, Typography, Paper } from '@material-ui/core'
+import { Stack } from '@mui/material'
 
 export default function UserHeader(props) {
   const { currentUser } = props
 
   return (
-    <Grid container spacing={1} justifyContent="flex-start" alignItems="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <Grid item>
+    <Paper style={{ marginLeft: '1rem', marginTop: '1rem', padding: '.5rem' }}>
+      <Stack direction="row" spacing={1}>
         <Avatar
           alt="avatar"
           src={currentUser.avatar_url}
-          style={{ width: 50, height: 50, border: '1px solid black', borderRadius: '.5rem' }}
+          style={{ width: 30, height: 30, border: '1px solid black', borderRadius: '.5rem' }}
           variant="square"
         />
-      </Grid>
-      <Grid item>
-        <Typography variant="h4" style={{ marginLeft: '1rem' }}>
+
+        <Typography variant="h6" style={{ marginLeft: '1rem' }}>
           {currentUser.name} ({currentUser.login})
         </Typography>
-      </Grid>
-    </Grid>
+      </Stack>
+    </Paper>
   )
 }

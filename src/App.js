@@ -8,48 +8,54 @@ import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme'
-import { Container } from '@mui/material';
 // import ReposAccordionGroup from './components/ReposAccordionGroup';
 import RepoList from './components/RepoList'
 import UserHeader from './components/UserHeader'
 import Topbar from './components/Topbar'
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
+import RepoViewer from './components/RepoViewer';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({})
+  const [repos, setRepos] = React.useState([])
+  const [selectedRepo, setSelectedRepo] = React.useState("pods")
+
   React.useEffect(() => {
     fetchCurrentUser(setCurrentUser)
   }, [])
 
-  const [repos, setRepos] = React.useState([])
   React.useEffect(() => {
     fetchUserRepos(setRepos)
   }, [])
 
-  console.log(repos)
+  const handleRepoClicked = (event, repo) => {
+    setSelectedRepo(repo)
+  }
+
+  console.log('Selected Repo: ', selectedRepo)
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Topbar />
-      <div className="App">
-        <Container maxWidth="xl">
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
           { Object.keys(currentUser).length > 0 && (
             <UserHeader currentUser={currentUser} />
           )}
+
           { repos.length > 0 && (
-            <Grid container spacing={1} justifyContent="flex-start" alignItems="center" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-              <Grid item>
-                <Typography variant="h4" style={{ marginBottom: '.5rem' }}>Select A Repo:</Typography>
-                <RepoList repos={repos} />
-              </Grid>
-              {/* <ReposAccordionGroup repos={repos} /> */}
-              <Grid item>
-                PR Viewer goes over here
-              </Grid>
-            </Grid>
+            <RepoList repos={repos} selectedRepo={selectedRepo} onRepoClicked={handleRepoClicked} />
           )}
-        </Container>
-      </div>
+        </Grid>
+        <Grid item xs={6}>
+          <RepoViewer repo={repos.filter(repo => repo.name === selectedRepo)[0] || {}} />
+        </Grid>
+        <Grid item xs={3}>
+          <Paper style={{ marginTop: '1rem', marginRight: '1rem', padding: '1rem' }}>
+            Settings
+          </Paper>
+        </Grid>
+      </Grid>
     </ThemeProvider>
 
   );
