@@ -1,18 +1,11 @@
 import React from 'react'
-import {
-  fetchUserRepos,
-  fetchCurrentUser
-} from './github_api'
-
-import './App.css';
+import { fetchUserRepos, fetchCurrentUser } from './github_api'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme'
-// import ReposAccordionGroup from './components/ReposAccordionGroup';
 import RepoList from './components/RepoList'
 import UserHeader from './components/UserHeader'
-import Topbar from './components/Topbar'
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
 import RepoViewer from './components/RepoViewer';
 
 function App() {
@@ -32,11 +25,9 @@ function App() {
     setSelectedRepo(repo)
   }
 
-  console.log('Selected Repo: ', selectedRepo)
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Topbar />
       <Grid container spacing={2}>
         <Grid item xs={3}>
           { Object.keys(currentUser).length > 0 && (
@@ -51,8 +42,10 @@ function App() {
           <RepoViewer repo={repos.filter(repo => repo.name === selectedRepo)[0] || {}} />
         </Grid>
         <Grid item xs={3}>
-          <Paper style={{ marginTop: '1rem', marginRight: '1rem', padding: '1rem' }}>
-            Settings
+          <Paper style={{ marginTop: '1rem', marginRight: '1rem', padding: '.5rem' }}>
+            <Typography variant="h6">
+              Settings
+            </Typography>
           </Paper>
         </Grid>
       </Grid>

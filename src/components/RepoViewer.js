@@ -1,7 +1,6 @@
 import React from 'react'
 import { fetchPullsForRepo } from '../github_api'
-import { LinearProgress, Paper, Typography } from '@material-ui/core'
-import { Stack } from '@mui/material'
+import { LinearProgress } from '@material-ui/core'
 import PullRequests from './PullRequests'
 
 export default function RepoViewer(props) {
@@ -14,8 +13,6 @@ export default function RepoViewer(props) {
 		}
 	}, [repo])
 
-	console.log('repo viewer repo: ', repo)
-	console.log(`pulls for repo ${repo.name}`, pulls)
 	return(
 		<React.Fragment>
 			{ Object.keys(repo).length > 0 && (

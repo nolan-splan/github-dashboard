@@ -1,9 +1,10 @@
-import { Avatar, Chip, LinearProgress, Link, Paper, Typography } from '@material-ui/core'
+import { Avatar, Chip, Link, Paper, Typography } from '@material-ui/core'
 import { Stack } from '@mui/material'
 import React from 'react'
 
 export default function PullRequests(props) {
 	const { pulls } = props
+
 	return (
 		<Stack spacing={2} style={{ marginTop: '1rem' }}>
 			{ pulls.length > 0 && pulls.map(pull => (
@@ -34,7 +35,6 @@ export default function PullRequests(props) {
 					</Stack>
 				</Paper>
 			))}
-
 		</Stack>
 	)
 }
