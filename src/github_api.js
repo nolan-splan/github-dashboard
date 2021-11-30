@@ -1,8 +1,6 @@
 import { octokit } from './octokit'
 
 export async function fetchUserRepos(callback) {
-  // const { data } = await octokit.rest.repos.listForAuthenticatedUser()
-  // const { data } = await octokit.request('GET /user/repos')
   const allowedRepoNames = [
     'pods', 'neat', 'neat_reporting', 'napi', 'lablock', 'ndm-ar', 'neat-utilities', 'cci-utilities', 'podsupdog', 'nsg-utilities'
   ]
@@ -17,11 +15,6 @@ export async function fetchCurrentUser(callback) {
 }
 
 export async function fetchPullsForRepo(repo, callback) {
-  // const { data } = await octokit.rest.pulls.list({
-  //   owner: 'ccisystems',
-  //   repo,
-  // })
   const { data } = await octokit.request(`/repos/ccisystems/${repo}/pulls`)
-  console.log(data)
   callback(data)
 }

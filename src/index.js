@@ -4,9 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// console.log('Index.js', process.env.REACT_APP_GITHUB_KEY)
-console.log(process.cwd())
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
