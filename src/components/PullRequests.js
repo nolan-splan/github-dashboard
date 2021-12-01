@@ -1,15 +1,20 @@
 import { Avatar, Chip, Link, Paper, Typography } from '@material-ui/core'
 import { Stack } from '@mui/material'
 import React from 'react'
+import { GoGitPullRequest } from 'react-icons/go'
+import moment from 'moment'
 
 export default function PullRequests(props) {
 	const { pulls } = props
-
+	console.log('Pulls: ', pulls)
 	return (
 		<Stack spacing={2} style={{ marginTop: '1rem' }}>
 			{ pulls.length > 0 && pulls.map(pull => (
 				<Paper key={pull.id} style={{ padding: '1rem' }}>
 					<Stack direction="row" spacing={1}>
+						<Typography variant="h5">
+							<GoGitPullRequest style={{ marginRight: '.25rem', color: '#3fb950', fontSize: 'larger' }} />
+						</Typography>
 						<Typography variant="h5">
 							{pull.title}
 						</Typography>
@@ -23,10 +28,13 @@ export default function PullRequests(props) {
 						)}
 					</Stack>
 					<Stack direction="row" spacing={1}>
+						<Typography variant="h6">
+							Opened {moment(pull.created_at).fromNow()} by:
+						</Typography>
 						<Avatar
 							alt="avatar"
 							src={pull.assignee.avatar_url}
-							style={{ width: 30, height: 30, borderRadius: '.5rem' }}
+							style={{ width: 20, height: 20, marginTop: '.5rem', borderRadius: '.5rem' }}
 							variant="square"
 						/>
 						<Typography variant="h6">

@@ -14,7 +14,8 @@ export async function fetchCurrentUser(callback) {
   callback(data)
 }
 
-export async function fetchPullsForRepo(repo, callback) {
-  const { data } = await octokit.request(`/repos/ccisystems/${repo}/pulls`)
+export async function fetchPullsForRepo(repo, settings, callback) {
+  const { showOldestAtTop } = settings
+  const { data } = await octokit.request(`/repos/ccisystems/${repo}/pulls${showOldestAtTop ? "?sort='long-running'" : ""}`)
   callback(data)
 }
