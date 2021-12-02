@@ -15,8 +15,9 @@ function App() {
   const [selectedRepo, setSelectedRepo] = React.useState("pods")
 	const [pulls, setPulls] = React.useState([])
   const [settings, setSettings] = React.useState({
-    includeMyOwnPrs: true,
-    showOldestAtTop: true
+    excludeMyPrs: false,
+    showOldestAtTop: false,
+    excludeWip: true
   })
 
   React.useEffect(() => {
@@ -54,7 +55,7 @@ function App() {
           { Object.keys(selectedRepo).length > 0 && (
             <React.Fragment>
               { pulls.length > 0 ? (
-                <PullRequests pulls={pulls} />
+                <PullRequests pulls={pulls} settings={settings} currentUser={currentUser} />
               ) : (
                 <CircularProgress />
               )}

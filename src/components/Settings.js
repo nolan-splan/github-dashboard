@@ -6,7 +6,7 @@ import { Stack } from '@mui/material'
 
 export default function Settings(props) {
 	const { settings, setSettings } = props
-	const { includeMyOwnPrs, showOldestAtTop } = settings
+	const { excludeMyPrs, showOldestAtTop, excludeWip } = settings
 
 	const handleChange = (event, setting) => {
 		const newSettings = {
@@ -25,7 +25,8 @@ export default function Settings(props) {
 					Settings
 				</Typography>
 
-				<FormControlLabel control={<Switch checked={includeMyOwnPrs} onChange={handleChange} inputProps={{ 'aria-label': 'includeMyOwnPrs' }} />} label="Include my own PRs" />
+				<FormControlLabel control={<Switch checked={excludeMyPrs} onChange={handleChange} inputProps={{ 'aria-label': 'excludeMyPrs' }} />} label="Exclude My PRs" />
+				<FormControlLabel control={<Switch checked={excludeWip} onChange={handleChange} inputProps={{ 'aria-label': 'excludeWip' }} />} label="Exclude 'WIP'" />
 				<FormControlLabel control={<Switch checked={showOldestAtTop} onChange={handleChange} inputProps={{ 'aria-label': 'showOldestAtTop' }} />} label="Show oldest PRs at top" />
 			</Stack>
 		</Paper>
