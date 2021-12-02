@@ -34,7 +34,7 @@ function App() {
 	}, [selectedRepo, settings])
 
   const handleRepoClicked = (event, repo) => {
-    setSelectedRepo(repo)
+    setSelectedRepo(event.target.ariaLabel)
   }
 
   const handleSettingsChanged = (newSettings) => {
@@ -45,16 +45,12 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid item xs={3}>
-          { Object.keys(currentUser).length > 0 && (
-            <UserHeader currentUser={currentUser} />
-          )}
-
+        <Grid item xs={2}>
           { repos.length > 0 && (
-            <RepoList repos={repos} selectedRepo={selectedRepo} onRepoClicked={handleRepoClicked} />
+            <RepoList repos={repos} pulls={pulls} selectedRepo={selectedRepo} onRepoClicked={handleRepoClicked} />
           )}
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={8}>
           { Object.keys(selectedRepo).length > 0 && (
             <React.Fragment>
               { pulls.length > 0 ? (
@@ -66,6 +62,9 @@ function App() {
           )}
         </Grid>
         <Grid item xs={2}>
+          { Object.keys(currentUser).length > 0 && (
+            <UserHeader currentUser={currentUser} />
+          )}
           <Settings settings={settings} setSettings={handleSettingsChanged} />
         </Grid>
       </Grid>

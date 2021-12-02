@@ -6,7 +6,6 @@ import moment from 'moment'
 
 export default function PullRequests(props) {
 	const { pulls } = props
-	console.log('Pulls: ', pulls)
 	return (
 		<Stack spacing={2} style={{ marginTop: '1rem' }}>
 			{ pulls.length > 0 && pulls.map(pull => (

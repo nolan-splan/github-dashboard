@@ -8,8 +8,6 @@ export default function Settings(props) {
 	const { settings, setSettings } = props
 	const { includeMyOwnPrs, showOldestAtTop } = settings
 
-	console.log("Settings", settings)
-
 	const handleChange = (event, setting) => {
 		const newSettings = {
 			...settings
