@@ -4,9 +4,6 @@ import React from 'react'
 
 export default function RepoList(props) {
   const { repos, onRepoClicked, selectedRepo, pulls } = props
-  console.log('props: ', props)
-  console.log('repos: ', repos)
-  console.log('selectedRepo', selectedRepo)
   return (
     // <List component="nav" aria-label="main repo list">
 
