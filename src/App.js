@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme'
 import RepoList from './components/RepoList'
 import UserHeader from './components/UserHeader'
-import { CircularProgress, Grid } from '@material-ui/core'
+import { CircularProgress, Grid, Paper, Typography } from '@material-ui/core'
 import Settings from './components/Settings'
 import PullRequests from './components/PullRequests'
 
@@ -46,12 +46,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Grid container spacing={2}>
-        <Grid item xs={2}>
+        <Grid item xs={10}>
           { repos.length > 0 && (
             <RepoList repos={repos} pulls={pulls} selectedRepo={selectedRepo} onRepoClicked={handleRepoClicked} />
           )}
-        </Grid>
-        <Grid item xs={8}>
           { Object.keys(selectedRepo).length > 0 && (
             <React.Fragment>
               { pulls.length > 0 ? (

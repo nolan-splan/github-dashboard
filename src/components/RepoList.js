@@ -25,8 +25,8 @@ export default function RepoList(props) {
     exclusive
     onChange={(event) => onRepoClicked(event, 'foo')}
     aria-label="selectedRepo"
-    orientation="vertical"
-    style={{ width: '95%', marginLeft: '1rem', marginTop: '1rem' }}
+    style={{ marginLeft: '1rem', marginTop: '1rem', width: '99%' }}
+    fullWidth
   >
     { repos.map(repo => (
       <ToggleButton key={repo.id} value={repo.name} aria-label={repo.name} color="secondary" fullWidth sx={{ fontWeight: 'bold', color: 'primary.main', borderColor: 'primary.main' }}>{repo.name}</ToggleButton>

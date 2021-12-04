@@ -23,7 +23,7 @@ export default function PullRequests(props) {
 	const { pulls, settings, currentUser } = props
 	const filteredPulls = filterPullRequests(settings, pulls, currentUser)
 	return (
-		<Stack spacing={2} style={{ marginTop: '1rem' }}>
+		<Stack spacing={2} style={{ marginTop: '1rem', marginLeft: '1rem' }}>
 			{ filteredPulls.length > 0 ? filteredPulls.map(pull => (
 				<Paper key={pull.id} style={{ padding: '1rem' }}>
 					<Stack direction="row" spacing={1}>
